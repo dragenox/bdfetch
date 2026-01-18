@@ -14,15 +14,16 @@ Uses whatever downloader is already available (`wget` or `curl`).
 
 ```bash
 wget -qO- "https://raw.githubusercontent.com/dragenox/bdfetch/main/install-remote.sh?nocache=$(date +%s)" | sh
-
+```
 ### Using `curl` (needs apt or yarn to be installed)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragenox/bdfetch/main/install-remote.sh | sh
-
+```
 ### Using `git` (needs apt/yarn and git installed)
 
 ```bash
 git clone https://github.com/dragenox/bdfetch.git
 cd bdfetch
 ./install.sh
+```
