@@ -42,7 +42,7 @@ EOF
 
 show_disks() {
     printf "%b\n" "${CYAN}Disk layout:${RESET}"
-    lsblk -o NAME,SIZE,TYPE,TRAN,FSTYPE,LABEL,UUID,FSUSE%,MOUNTPOINT,MODEL
+    lsblk -o NAME,SIZE,TYPE,TRAN,FSTYPE,LABEL,UUID,FSUSE%,MOUNTPOINT,MODEL -- "$@"
     echo
 }
 
@@ -69,7 +69,8 @@ case "$1" in
         show_system
         ;;
     "-d")
-        show_disks
+        shift
+        show_disks "$@"
         ;;
     "-h"|"--help")
         usage
