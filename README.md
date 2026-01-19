@@ -10,11 +10,26 @@ Designed to work on **minimal appliance-style installs** (no Git required).
 
 - `bdfetch` → system information (default)
 - `bdfetch -s` → system information
-- `bdfetch -d` → disk information (diskfetch)
+- `bdfetch -d [lsblk-args] [devices...]` → disk information (passes arguments directly to `lsblk`)
+- `bdfetch -- [lsblk-args] [devices...]` → explicit passthrough mode
+- `bdfetch -u` → update bdfetch to the latest version
+- `bdfetch -h` → show help
 
 The `-s` flag is the default when no flag is provided.
 
 Note: The `bdfetch -d` (diskfetch) command requires `lsblk`. The `lsblk` utility is provided by `util-linux` and is included by default on most Linux distributions. On minimal or custom systems, `lsblk` may need to be installed separately.
+
+### Examples
+
+```bash
+bdfetch
+bdfetch -s
+bdfetch -d
+bdfetch -d -a /dev/sde
+bdfetch -- -a /dev/sde
+bdfetch -u
+bdfetch -h
+```
 
 ---
 
