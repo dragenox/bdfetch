@@ -46,19 +46,28 @@ show_disks() {
     echo
 }
 
+update_self() {
+    echo "Updating bdfetch..."
+    wget -qO- "https://raw.githubusercontent.com/dragenox/bdfetch/main/install-remote.sh" | sh
+}
+
 usage() {
     cat <<EOF
-Usage: bdfetch [OPTION]
+Usage: bdfetch [OPTION] [ARGS...]
 
 Options:
   -s        System information (default)
-  -d        Disk information
+  -d        Disk information (passes options to lsblk)
+  -u        Update bdfetch to latest version
   -h        Show this help
 
 Examples:
   bdfetch
   bdfetch -s
   bdfetch -d
+  bdfetch -d -a /dev/sde (optional)
+  bdfetch -- -a /dev/sde
+  bdfetch -u
 EOF
 }
 
@@ -71,6 +80,13 @@ case "$1" in
     "-d")
         shift
         show_disks "$@"
+        ;;
+    "--")
+        shift
+        show_disks "$@"
+        ;;
+    "-u"|"--update")
+        update_self
         ;;
     "-h"|"--help")
         usage
